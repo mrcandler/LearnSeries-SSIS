@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">BLACCART-PC</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJPz2nwGDrk64/nLGZ5DVogAAAAACAAAAAAAQZgAAAAEAACAAAADsUNXHUDHeU3uug7EAP7gv42Bax8eMW2ozP5yIaykmcwAAAAAOgAAAAAIAACAAAADcz+0ilIRRcxM8x52H9iL4RZx0DZvfuJ6Hou1kZWKOUpAAAADnokzAoW0X0FegAqRbN7P3E1aSy5nI4CgX0KKjpyAnr9fhnc2asqms3TiObgJaOZbQAyHZwZcc/9HIbTkBUQlpoeCdnmP/FT9+8sGcVIRKTAX1KPHfOF6BAzGa+p1AKpPDp1mQrjcyNknPdJCRWjnI9Mu9VvLhUbXaDCk4O5MzDewFJLIm/Fg9/LLtlfz/NwVAAAAAoQTVEiWFPqXf+25d1dr4jRYmUWI5WU68WzdHR5jXm+yVVqtYVDZA9eAFCRgUNMPW0WTPOPTjmQBHOTh7aJfAmg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJPz2nwGDrk64/nLGZ5DVogAAAAACAAAAAAAQZgAAAAEAACAAAADQI1pZ3GIltVCpVrBypn3lVVz+e/fwfC4lIirm+VG6AgAAAAAOgAAAAAIAACAAAACxRJ3SCFV0pj3ymOaqFP6pWL6sIOD5aZki3WGxuFGBYpAAAABgYGTUuuTKCNS/+CI6JL2m6YjphtCnId+INy5E7xpHeL/8o6ggDBDBVQAl45NhV3AkORvXtzIclZ3IzkDzj5LcH+AK7cwCZfcQ515X4lG5ESL1/4Z1eJDfsqgrzSWb09RzBAaOQd5wOlYZ/wIMFI96FcgupD4S5Fa0FwjkC4kKxdA2ed+Xu09r2YQkFiruK5JAAAAAxvcuyqt7myk3Hj30kgVQtR7RTfiEgEd4QmtNu1iCxhdovzv36nE7fz10Bl/3ErH0qtX/MINM6aDeK6u2I6AC1A==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -34,6 +34,9 @@
           <SSIS:Package SSIS:Name="etl_SQL_To_Excel.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="etl_Basic_Example.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="etl_SQL_To_Excel_Overwrite.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="etl_Logging_To_Text.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="etl_Logging_To_SQL.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="etl_Logging_To_CSV.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
@@ -1200,6 +1203,57 @@
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="etl_Logging_To_Text.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{7CDAA1C7-B64E-438A-BE48-CADD7C3F414E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{6770DDB2-A797-4FCC-8376-3A61749A6E6F}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="etl_Logging_To_SQL.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{3897A3C0-CCDF-466F-9EEE-D31007A42AC3}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C180EC3F-4E58-4485-B709-7C2005340CB1}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="etl_Logging_To_CSV.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{00FBEBD2-97CE-40CC-88F3-B3424C21D59E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{0059EC79-C7DC-4610-B95E-34031D998C88}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
