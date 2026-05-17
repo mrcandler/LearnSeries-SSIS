@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="simpleEtl"
   DTS:PackageType="5"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{5995FAF9-A751-4296-BF77-EC00F070B844}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{25034F7A-94BB-4331-817A-A73799C907A6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -42,23 +42,9 @@
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Bulk Insert Task"
-      DTS:CreationName="Microsoft.BulkInsertTask"
-      DTS:Description="Bulk Insert Task"
-      DTS:Disabled="True"
-      DTS:DTSID="{050C8ABC-64EE-4D53-8574-DE5234E4AA08}"
-      DTS:ExecutableType="Microsoft.BulkInsertTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Bulk Insert Task"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData />
-    </DTS:Executable>
-    <DTS:Executable
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{BF8EA1CA-7655-4610-AC5F-90A4308D4E67}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -663,13 +649,9 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="154,42"
-          Id="Package\Bulk Insert Task"
-          TopLeft="38,5.5" />
-        <NodeLayout
           Size="151.5,42"
           Id="Package\Data Flow Task"
-          TopLeft="32.5,91.5416662119742" />
+          TopLeft="27,24.374999878928" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

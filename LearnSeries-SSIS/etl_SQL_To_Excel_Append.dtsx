@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{1CF2925B-499A-4EBF-9F35-C257A9FDF9EB}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{F4C6236B-C1CF-4961-95FF-22C72854D87F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -37,7 +37,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="0"
           DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\tmp\Tutorials\Data_Target\test.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\tmp\Tutorials\Data_Target\test.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -453,7 +453,7 @@
         <NodeLayout
           Size="160.5,42"
           Id="Package\Data Flow Task 1"
-          TopLeft="114,59.5833330373797" />
+          TopLeft="119,112.666666107045" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -496,7 +496,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task 1\OLE DB Source">
+    design-time-name="Package\Data Flow Task 1\Excel Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -509,7 +509,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task 1\Excel Destination">
+    design-time-name="Package\Data Flow Task 1\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
