@@ -1,37 +1,37 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/17/2026 1:24:27 AM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="BLACCART-PC"
   DTS:CreatorName="BLACCART-PC\mrcan"
-  DTS:DTSID="{7C1D1BDC-FF1E-4380-B803-AE3303E4E84F}"
+  DTS:DTSID="{EE73CDDA-6A14-4489-BB06-94E06747C258}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="17.0.1010.2"
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:VersionBuild="5"
-  DTS:VersionGUID="{66F8784E-002D-4DCC-AB3D-E2319642FA63}">
+  DTS:VersionGUID="{F4C6236B-C1CF-4961-95FF-22C72854D87F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[BLACCART-PC.db-Dev1]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{A6A40411-D8A5-4D39-9E0D-3010B331F27C}"
+      DTS:DTSID="{2AC1AC1B-D24F-4E5A-A998-501165AE5641}"
       DTS:ObjectName="BLACCART-PC.db-Dev1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=BLACCART-PC;Initial Catalog=db-Dev;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{A6A40411-D8A5-4D39-9E0D-3010B331F27C}BLACCART-PC.db-Dev1;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=BLACCART-PC;Initial Catalog=db-Dev;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{2AC1AC1B-D24F-4E5A-A998-501165AE5641}BLACCART-PC.db-Dev1;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{F9FFA58A-7BD4-4894-8CD1-945BF2A27CE6}"
+      DTS:DTSID="{7147297D-D6D3-4BA5-B487-2C4D728B01B9}"
       DTS:ObjectName="Excel Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -47,7 +47,7 @@
       DTS:refId="Package\Data Flow Task 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{C2E92E72-8BDC-40B3-B92D-57BFE47B91D7}"
+      DTS:DTSID="{1E1F7BC6-7517-4285-97BD-81F94DC8F92A}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task 1"
