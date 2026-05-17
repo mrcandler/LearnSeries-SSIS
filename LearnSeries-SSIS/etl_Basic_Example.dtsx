@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="simpleEtl"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{D6977801-2EFA-4297-8F54-52B3ACD0D139}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{5995FAF9-A751-4296-BF77-EC00F070B844}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -665,11 +665,11 @@
         <NodeLayout
           Size="154,42"
           Id="Package\Bulk Insert Task"
-          TopLeft="5.5,5.5" />
+          TopLeft="38,5.5" />
         <NodeLayout
           Size="151.5,42"
           Id="Package\Data Flow Task"
-          TopLeft="38.5,64.4583330131653" />
+          TopLeft="32.5,91.5416662119742" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
