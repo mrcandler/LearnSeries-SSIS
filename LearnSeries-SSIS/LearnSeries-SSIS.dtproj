@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">BLACCART-PC</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJPz2nwGDrk64/nLGZ5DVogAAAAACAAAAAAAQZgAAAAEAACAAAABzGzBnhDPXdVAkR+smFt4Z7F4qZaBf6o0yDT26p9RKnQAAAAAOgAAAAAIAACAAAACvd472715/PnUXcXGm73Zq9yIX9T15WMDUSMJvryIlHJAAAADy7LTTkxprqObW6mH8kC8lRAJAjCJDJE4I6qEaFgg5CTOypPKfqEPnH0GyKUFOrTekHDvMcxUJFLRIIo9PMvyDu7CbDtUyNsVbg3gcPI0mKzwzi9PY03aE7ioePdVInHNrCo7aXS/+4y0f5NxFodYR38T1MzWWdQeAoqKwb3KL2FP2m7AYoGUGd6K5hg5d/UdAAAAA+sHAf7vb5j0VWOdxKRXRdxhvDXrDkP8hBdCPYH/QQIIkQjwMPgxZpWd3xCqjCzzp3+nOkjJ2o5wUrF8KD4iWMQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJPz2nwGDrk64/nLGZ5DVogAAAAACAAAAAAAQZgAAAAEAACAAAAAYDRld+tWODN48o8HVIOKY5U+Yd2ceYTVDLQjwu3ccjQAAAAAOgAAAAAIAACAAAABt+8BlErBhOKTl1jEAscy+MxkZSrc+M4TyWHVlt75MrpAAAAA316fSOlwZqTfsGgqYVUuAyXLPQZBmbqo/Zzye8ivglZuT2RBC/508fjfubxbMDDKCSm2peMNomS17tdYK874dzmviLuEtOODvqi9iZw9hKZz5LYzxbWaqOFPCZ4K7lV4UAmJ6X8auLIr4csKM3qTbUGj4pTSAQRIBo9e+1DS68vHdHHVm4tm8tzY2PLjg6eRAAAAAPzM9XBhOGE/LyFTuvL2mMzBaJa10BkAn2GcWjqFzE6qim0GJLKCPK8jU/0blSFPKz5neUR3bvWzYNC8NAaat0A==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -38,6 +38,7 @@
           <SSIS:Package SSIS:Name="etl_Logging_To_SQL.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="etl_Logging_To_CSV.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="etl_SQL_To_Excel_Append.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="etl_XML_To_SQL.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="cm_sqldb_stage.conmgr" />
@@ -1036,10 +1037,10 @@
                 <SSIS:Property SSIS:Name="Name">etl_SQL_To_Excel_Overwrite</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">18</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">19</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{8DFCC1F7-CE24-4F7C-9B8B-06C8CFB7EDBA}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F7177B56-2C9E-4FFD-AAA8-9C9C47CE3B98}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1676,6 +1677,23 @@
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="etl_XML_To_SQL.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{4EC1A665-5171-4597-8FC0-32D3F69B95D9}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">etl_XML_To_SQL</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{8A6849E6-476B-41AE-8306-5E91F0C4C2EF}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
