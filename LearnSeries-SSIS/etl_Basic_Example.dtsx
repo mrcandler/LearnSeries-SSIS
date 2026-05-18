@@ -11,44 +11,48 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="simpleEtl"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{25034F7A-94BB-4331-817A-A73799C907A6}">
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{BAFFA0F3-7C8C-4800-91B7-018F382DB765}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[BLACCART-PC.db-Stage]"
-      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-      DTS:DTSID="{C70A8B3F-DEFF-43FF-9EC2-53A1451F1BE0}"
-      DTS:ObjectName="BLACCART-PC.db-Stage">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=BLACCART-PC;Initial Catalog=db-Stage;Integrated Security=True;Encrypt=False;Application Name=SSIS-Package-{C70A8B3F-DEFF-43FF-9EC2-53A1451F1BE0}BLACCART-PC.db-Stage;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:refId="Package.ConnectionManagers[cm_Excel]"
       DTS:CreationName="EXCEL"
       DTS:DTSID="{5EFA0293-C7C9-4E55-A1A6-BE4FB6951725}"
-      DTS:ObjectName="Excel Connection Manager">
+      DTS:ObjectName="cm_Excel">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::str_Path_Source_Folder_File]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="0"
           DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\MyVerse\MyCodingPlayGround\Data\Test-001 (Data).xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\tmp\Tutorials\Data_Source\test.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9AFD7DB5-4148-4C43-A6EA-4DCE8CBB7317}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::str_Path_Source_Folder]+&quot;\\&quot;+&quot;test.xlsx&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="str_Path_Source_Folder_File">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\tmp\Tutorials\Data_Source\test.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Data Flow Task"
+      DTS:refId="Package\Import Excel Data to db Dev"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{BF8EA1CA-7655-4610-AC5F-90A4308D4E67}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Data Flow Task"
+      DTS:ObjectName="Import Excel Data to db Dev"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -56,239 +60,11 @@
           version="1">
           <components>
             <component
-              refId="Package\Data Flow Task\ADO NET Destination"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
-              name="ADO NET Destination"
-              usesDispositions="true"
-              version="2">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="The Destination database table name."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Person2"</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
-                  expressionType="Notify"
-                  name="BatchSize">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
-                  expressionType="Notify"
-                  name="CommandTimeout">30</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
-                  expressionType="Notify"
-                  name="UseBulkInsertWhenPossible">true</property>
-                <property
-                  dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Data Flow Task\ADO NET Destination.Connections[IDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[BLACCART-PC.db-Stage]"
-                  connectionManagerRefId="Package.ConnectionManagers[BLACCART-PC.db-Stage]"
-                  description="Managed connection manager"
-                  name="IDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="ADO NET Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[BusinessEntityID]"
-                      cachedDataType="r8"
-                      cachedName="BusinessEntityID"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[BusinessEntityID]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[BusinessEntityID]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[PersonType]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="PersonType"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[PersonType]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[PersonType]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[NameStyle]"
-                      cachedDataType="r8"
-                      cachedName="NameStyle"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[NameStyle]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[NameStyle]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Title]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="Title"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Title]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Title]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[FirstName]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="FirstName"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FirstName]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[MiddleName]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="MiddleName"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[MiddleName]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[MiddleName]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[LastName]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="LastName"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[LastName]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Suffix]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="Suffix"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Suffix]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Suffix]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[EmailPromotion]"
-                      cachedDataType="r8"
-                      cachedName="EmailPromotion"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[EmailPromotion]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[EmailPromotion]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[AdditionalContactInfo]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="AdditionalContactInfo"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[AdditionalContactInfo]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[AdditionalContactInfo]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Demographics]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="Demographics"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Demographics]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Demographics]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[rowguid]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="rowguid"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[rowguid]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rowguid]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ModifiedDate]"
-                      cachedDataType="date"
-                      cachedName="ModifiedDate"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ModifiedDate]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[ModifiedDate]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[BusinessEntityID]"
-                      dataType="r8"
-                      name="BusinessEntityID" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[PersonType]"
-                      dataType="wstr"
-                      length="255"
-                      name="PersonType" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[NameStyle]"
-                      dataType="r8"
-                      name="NameStyle" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Title]"
-                      dataType="wstr"
-                      length="255"
-                      name="Title" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
-                      dataType="wstr"
-                      length="255"
-                      name="FirstName" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[MiddleName]"
-                      dataType="wstr"
-                      length="255"
-                      name="MiddleName" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
-                      dataType="wstr"
-                      length="255"
-                      name="LastName" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Suffix]"
-                      dataType="wstr"
-                      length="255"
-                      name="Suffix" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[EmailPromotion]"
-                      dataType="r8"
-                      name="EmailPromotion" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[AdditionalContactInfo]"
-                      dataType="wstr"
-                      length="255"
-                      name="AdditionalContactInfo" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Demographics]"
-                      dataType="wstr"
-                      length="255"
-                      name="Demographics" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[rowguid]"
-                      dataType="wstr"
-                      length="255"
-                      name="rowguid" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ModifiedDate]"
-                      dataType="dbTimeStamp"
-                      name="ModifiedDate" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="ADO NET Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Data Flow Task\Excel Source"
+              refId="Package\Import Excel Data to db Dev\Import Single Excel File"
               componentClassID="Microsoft.ExcelSource"
               contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Excel Source"
-              name="Excel Source"
+              name="Import Single Excel File"
               usesDispositions="true"
               version="1">
               <properties>
@@ -299,7 +75,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">Sheet1$</property>
+                  name="OpenRowset">data$</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -325,298 +101,333 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\Excel Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
-                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  refId="Package\Import Excel Data to db Dev\Import Single Excel File.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cm_Excel]"
+                  connectionManagerRefId="Package.ConnectionManagers[cm_Excel]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output]"
+                  refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output]"
                   name="Excel Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[BusinessEntityID]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[id]"
                       dataType="r8"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[BusinessEntityID]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[BusinessEntityID]"
-                      name="BusinessEntityID"
+                      externalMetadataColumnId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].ExternalColumns[id]"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[id]"
+                      name="id"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[PersonType]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[first_name]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[PersonType]"
+                      externalMetadataColumnId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].ExternalColumns[first_name]"
                       length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[PersonType]"
-                      name="PersonType"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[first_name]"
+                      name="first_name"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[NameStyle]"
-                      dataType="r8"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[NameStyle]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[NameStyle]"
-                      name="NameStyle"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Title]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[last_name]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Title]"
+                      externalMetadataColumnId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].ExternalColumns[last_name]"
                       length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Title]"
-                      name="Title"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[last_name]"
+                      name="last_name"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FirstName]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[email]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[FirstName]"
+                      externalMetadataColumnId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].ExternalColumns[email]"
                       length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FirstName]"
-                      name="FirstName"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[email]"
+                      name="email"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[MiddleName]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[gender]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[MiddleName]"
+                      externalMetadataColumnId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].ExternalColumns[gender]"
                       length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[MiddleName]"
-                      name="MiddleName"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[gender]"
+                      name="gender"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[LastName]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[ip_address]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[LastName]"
+                      externalMetadataColumnId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].ExternalColumns[ip_address]"
                       length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[LastName]"
-                      name="LastName"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Suffix]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Suffix]"
-                      length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Suffix]"
-                      name="Suffix"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[EmailPromotion]"
-                      dataType="r8"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[EmailPromotion]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[EmailPromotion]"
-                      name="EmailPromotion"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[AdditionalContactInfo]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[AdditionalContactInfo]"
-                      length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[AdditionalContactInfo]"
-                      name="AdditionalContactInfo"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Demographics]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Demographics]"
-                      length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Demographics]"
-                      name="Demographics"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rowguid]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rowguid]"
-                      length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rowguid]"
-                      name="rowguid"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[ModifiedDate]"
-                      dataType="date"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[ModifiedDate]"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[ModifiedDate]"
-                      name="ModifiedDate"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[ip_address]"
+                      name="ip_address"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[BusinessEntityID]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].ExternalColumns[id]"
                       dataType="r8"
-                      name="BusinessEntityID" />
+                      name="id" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[PersonType]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].ExternalColumns[first_name]"
                       dataType="wstr"
                       length="255"
-                      name="PersonType" />
+                      name="first_name" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[NameStyle]"
-                      dataType="r8"
-                      name="NameStyle" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Title]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].ExternalColumns[last_name]"
                       dataType="wstr"
                       length="255"
-                      name="Title" />
+                      name="last_name" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[FirstName]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].ExternalColumns[email]"
                       dataType="wstr"
                       length="255"
-                      name="FirstName" />
+                      name="email" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[MiddleName]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].ExternalColumns[gender]"
                       dataType="wstr"
                       length="255"
-                      name="MiddleName" />
+                      name="gender" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[LastName]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].ExternalColumns[ip_address]"
                       dataType="wstr"
                       length="255"
-                      name="LastName" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Suffix]"
-                      dataType="wstr"
-                      length="255"
-                      name="Suffix" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[EmailPromotion]"
-                      dataType="r8"
-                      name="EmailPromotion" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[AdditionalContactInfo]"
-                      dataType="wstr"
-                      length="255"
-                      name="AdditionalContactInfo" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Demographics]"
-                      dataType="wstr"
-                      length="255"
-                      name="Demographics" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rowguid]"
-                      dataType="wstr"
-                      length="255"
-                      name="rowguid" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[ModifiedDate]"
-                      dataType="date"
-                      name="ModifiedDate" />
+                      name="ip_address" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output]"
+                  refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output]"
                   isErrorOut="true"
                   name="Excel Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[BusinessEntityID]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[id]"
                       dataType="r8"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[BusinessEntityID]"
-                      name="BusinessEntityID" />
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[id]"
+                      name="id" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[PersonType]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[first_name]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[PersonType]"
-                      name="PersonType" />
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[first_name]"
+                      name="first_name" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[NameStyle]"
-                      dataType="r8"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[NameStyle]"
-                      name="NameStyle" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Title]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[last_name]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Title]"
-                      name="Title" />
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[last_name]"
+                      name="last_name" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[FirstName]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[email]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[FirstName]"
-                      name="FirstName" />
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[email]"
+                      name="email" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[MiddleName]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[gender]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[MiddleName]"
-                      name="MiddleName" />
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[gender]"
+                      name="gender" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[LastName]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[ip_address]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[LastName]"
-                      name="LastName" />
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[ip_address]"
+                      name="ip_address" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Suffix]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Suffix]"
-                      name="Suffix" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[EmailPromotion]"
-                      dataType="r8"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[EmailPromotion]"
-                      name="EmailPromotion" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[AdditionalContactInfo]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[AdditionalContactInfo]"
-                      name="AdditionalContactInfo" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Demographics]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Demographics]"
-                      name="Demographics" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rowguid]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rowguid]"
-                      name="rowguid" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ModifiedDate]"
-                      dataType="date"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ModifiedDate]"
-                      name="ModifiedDate" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Excel Data to db Dev\Load To dbDev"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Load To dbDev"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[People]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import Excel Data to db Dev\Load To dbDev.Connections[OleDbConnection]"
+                  connectionManagerID="{6F11CD4D-1E59-4599-A644-DEC49D8E88D8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[BLACCART-PC.db-Dev1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].Columns[id]"
+                      cachedDataType="r8"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[id]" />
+                    <inputColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].Columns[first_name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="first_name"
+                      externalMetadataColumnId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[first_name]" />
+                    <inputColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].Columns[last_name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="last_name"
+                      externalMetadataColumnId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[last_name]" />
+                    <inputColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].Columns[email]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="email"
+                      externalMetadataColumnId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].ExternalColumns[email]"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[email]" />
+                    <inputColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].Columns[gender]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="gender"
+                      externalMetadataColumnId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].ExternalColumns[gender]"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[gender]" />
+                    <inputColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].Columns[ip_address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ip_address"
+                      externalMetadataColumnId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].ExternalColumns[ip_address]"
+                      lineageId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output].Columns[ip_address]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="r8"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="first_name" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="last_name" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].ExternalColumns[email]"
+                      dataType="wstr"
+                      length="255"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].ExternalColumns[gender]"
+                      dataType="wstr"
+                      length="255"
+                      name="gender" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input].ExternalColumns[ip_address]"
+                      dataType="wstr"
+                      length="255"
+                      name="ip_address" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Excel Data to db Dev\Load To dbDev.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Excel Data to db Dev\Load To dbDev.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Excel Data to db Dev\Load To dbDev.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Excel Data to db Dev\Load To dbDev.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -627,10 +438,10 @@
           </components>
           <paths>
             <path
-              refId="Package\Data Flow Task.Paths[Excel Source Output]"
-              endId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              refId="Package\Import Excel Data to db Dev.Paths[Excel Source Output]"
+              endId="Package\Import Excel Data to db Dev\Load To dbDev.Inputs[OLE DB Destination Input]"
               name="Excel Source Output"
-              startId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output]" />
+              startId="Package\Import Excel Data to db Dev\Import Single Excel File.Outputs[Excel Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -649,51 +460,51 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="151.5,42"
-          Id="Package\Data Flow Task"
-          TopLeft="27,24.374999878928" />
+          Size="209.5,42"
+          Id="Package\Import Excel Data to db Dev"
+          TopLeft="77,30.333333182666" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Data Flow Task">
+    design-time-name="Package\Import Excel Data to db Dev">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="141,42"
-          Id="Package\Data Flow Task\Excel Source"
-          TopLeft="22.5,100.041666437975" />
+          Size="189,42"
+          Id="Package\Import Excel Data to db Dev\Import Single Excel File"
+          TopLeft="33.5,102.20833309388" />
         <NodeLayout
-          Size="181,42"
-          Id="Package\Data Flow Task\ADO NET Destination"
-          TopLeft="14,251.375000653788" />
+          Size="150.5,42"
+          Id="Package\Import Excel Data to db Dev\Load To dbDev"
+          TopLeft="41,216.124998926496" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Excel Source Output]"
-          TopLeft="93,142.041666437975">
+          Id="Package\Import Excel Data to db Dev.Paths[Excel Source Output]"
+          TopLeft="128,144.20833309388">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="11.5,109.333334215813"
+              EndConnector="-11.75,71.9166658326158"
               Start="0,0"
-              End="11.5,101.833334215813">
+              End="-11.75,64.4166658326158">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.6666671079066" />
+                    End="0,31.9583329163079" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,50.6666671079066"
-                    Point2="0,54.6666671079066"
-                    Point3="4,54.6666671079066" />
+                    Point1="0,31.9583329163079"
+                    Point2="0,35.9583329163079"
+                    Point3="-4,35.9583329163079" />
                   <mssgle:LineSegment
-                    End="7.5,54.6666671079066" />
+                    End="-7.75,35.9583329163079" />
                   <mssgle:CubicBezierSegment
-                    Point1="7.5,54.6666671079066"
-                    Point2="11.5,54.6666671079066"
-                    Point3="11.5,58.6666671079066" />
+                    Point1="-7.75,35.9583329163079"
+                    Point2="-11.75,35.9583329163079"
+                    Point3="-11.75,39.9583329163079" />
                   <mssgle:LineSegment
-                    End="11.5,101.833334215813" />
+                    End="-11.75,64.4166658326158" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -706,15 +517,20 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\ADO NET Destination">
+    design-time-name="Package\Import Excel Data to db Dev\Import Single Excel File">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\Excel Source">
+    design-time-name="Package\Import Excel Data to db Dev\Load To dbDev">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

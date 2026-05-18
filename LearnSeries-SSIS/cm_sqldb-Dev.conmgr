@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="BLACCART-PC.db-Dev1"
+  DTS:DTSID="{6F11CD4D-1E59-4599-A644-DEC49D8E88D8}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::str_Server_Name]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=BLACCART-PC;Initial Catalog=db-Dev;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-LearnSeries-SSIS-{6F11CD4D-1E59-4599-A644-DEC49D8E88D8}BLACCART-PC.db-Dev1;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
