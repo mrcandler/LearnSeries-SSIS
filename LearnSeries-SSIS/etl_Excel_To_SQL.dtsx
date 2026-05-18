@@ -11,33 +11,21 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="etl_Excel_To_SQL"
   DTS:PackageType="5"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{B17ADBDE-D11F-4BF5-8353-94B20FDE259B}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{D3879B6C-6FEE-4278-A506-D8D08292F2B1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[BLACCART-PC.db-Dev1]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{5C83D9D7-F5E7-462B-B3C7-1A510D34F513}"
-      DTS:ObjectName="BLACCART-PC.db-Dev1">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=BLACCART-PC;Initial Catalog=db-Dev;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-etl_Excel_To_SQL-{5C83D9D7-F5E7-462B-B3C7-1A510D34F513}BLACCART-PC.db-Dev1;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:refId="Package.ConnectionManagers[cm_Excel]"
       DTS:CreationName="EXCEL"
       DTS:DTSID="{F88F8C28-5AD3-4864-BFEA-1855776C4704}"
-      DTS:ObjectName="Excel Connection Manager">
+      DTS:ObjectName="cm_Excel">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="0"
           DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\tmp\Tutorials\Sample Files\sample_customer_data.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\tmp\Tutorials\Sample Files\sample_customer_data.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -100,8 +88,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Excel Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
-                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerID="Package.ConnectionManagers[cm_Excel]"
+                  connectionManagerRefId="Package.ConnectionManagers[cm_Excel]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -319,8 +307,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[BLACCART-PC.db-Dev1]"
-                  connectionManagerRefId="Package.ConnectionManagers[BLACCART-PC.db-Dev1]"
+                  connectionManagerID="{5C83D9D7-F5E7-462B-B3C7-1A510D34F513}:invalid"
+                  connectionManagerRefId="{5C83D9D7-F5E7-462B-B3C7-1A510D34F513}:invalid"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -470,39 +458,39 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="141,42"
-          Id="Package\Data Flow Task\Excel Source"
-          TopLeft="241,113.208332771021" />
-        <NodeLayout
           Size="173,42"
           Id="Package\Data Flow Task\OLE DB Destination"
           TopLeft="244,222.62499889421" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Data Flow Task\Excel Source"
+          TopLeft="250.5,112.124999443069" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Excel Source Output]"
-          TopLeft="311.5,155.208332771021">
+          TopLeft="321,154.124999443069">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="19,67.4166661231882"
+              EndConnector="9.5,68.4999994511413"
               Start="0,0"
-              End="19,59.9166661231882">
+              End="9.5,60.9999994511413">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.7083330615941" />
+                    End="0,30.2499997255707" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,29.7083330615941"
-                    Point2="0,33.7083330615941"
-                    Point3="4,33.7083330615941" />
+                    Point1="0,30.2499997255707"
+                    Point2="0,34.2499997255707"
+                    Point3="4,34.2499997255707" />
                   <mssgle:LineSegment
-                    End="15,33.7083330615941" />
+                    End="5.5,34.2499997255707" />
                   <mssgle:CubicBezierSegment
-                    Point1="15,33.7083330615941"
-                    Point2="19,33.7083330615941"
-                    Point3="19,37.7083330615941" />
+                    Point1="5.5,34.2499997255707"
+                    Point2="9.5,34.2499997255707"
+                    Point3="9.5,38.2499997255707" />
                   <mssgle:LineSegment
-                    End="19,59.9166661231882" />
+                    End="9.5,60.9999994511413" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="simpleEtl"
   DTS:PackageType="5"
-  DTS:VersionBuild="23"
-  DTS:VersionGUID="{BAFFA0F3-7C8C-4800-91B7-018F382DB765}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{6B18E8F5-E009-4CFE-B33A-3404BAEF8EB9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -472,13 +472,13 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="189,42"
-          Id="Package\Import Excel Data to db Dev\Import Single Excel File"
-          TopLeft="33.5,102.20833309388" />
-        <NodeLayout
           Size="150.5,42"
           Id="Package\Import Excel Data to db Dev\Load To dbDev"
           TopLeft="41,216.124998926496" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Import Excel Data to db Dev\Import Single Excel File"
+          TopLeft="33.5,102.20833309388" />
         <EdgeLayout
           Id="Package\Import Excel Data to db Dev.Paths[Excel Source Output]"
           TopLeft="128,144.20833309388">
